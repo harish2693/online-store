@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.specbee.store",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "store",
+    "packageName": "com.specbee.store",
+    "packageFolder": "com/specbee/store",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NWI5N2I4YTYzYjI4YjdhYWQxNDQ1YjI5NDZiODcyNWM2Yzk4NWQyNWY1MTc2ZjY4NWM4MTFhMGY2MGZiZWY1M2E5MDI1ZGFjMjU2MjMzNjRlZmZhY2NhZTRiOGUwOGJkY2UzMTYzZjQwMDdmMzQ5MjNiZWIzZWFlZDE2ODE1MTI=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn"
+    ]
+  }
+}
