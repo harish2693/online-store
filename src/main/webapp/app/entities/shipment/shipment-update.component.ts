@@ -16,7 +16,7 @@ import { InvoiceService } from 'app/entities/invoice';
     templateUrl: './shipment-update.component.html'
 })
 export class ShipmentUpdateComponent implements OnInit {
-    private _shipment: IShipment;
+    shipment: IShipment;
     isSaving: boolean;
 
     invoices: IInvoice[];
@@ -33,6 +33,7 @@ export class ShipmentUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ shipment }) => {
             this.shipment = shipment;
+            this.date = this.shipment.date != null ? this.shipment.date.format(DATE_TIME_FORMAT) : null;
         });
         this.invoiceService.query().subscribe(
             (res: HttpResponse<IInvoice[]>) => {
@@ -48,7 +49,7 @@ export class ShipmentUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.shipment.date = moment(this.date, DATE_TIME_FORMAT);
+        this.shipment.date = this.date != null ? moment(this.date, DATE_TIME_FORMAT) : null;
         if (this.shipment.id !== undefined) {
             this.subscribeToSaveResponse(this.shipmentService.update(this.shipment));
         } else {
@@ -75,13 +76,5 @@ export class ShipmentUpdateComponent implements OnInit {
 
     trackInvoiceById(index: number, item: IInvoice) {
         return item.id;
-    }
-    get shipment() {
-        return this._shipment;
-    }
-
-    set shipment(shipment: IShipment) {
-        this._shipment = shipment;
-        this.date = moment(shipment.date).format(DATE_TIME_FORMAT);
     }
 }

@@ -14,7 +14,7 @@ import { ProductCategoryService } from 'app/entities/product-category';
     templateUrl: './product-update.component.html'
 })
 export class ProductUpdateComponent implements OnInit {
-    private _product: IProduct;
+    product: IProduct;
     isSaving: boolean;
 
     productcategories: IProductCategory[];
@@ -89,12 +89,5 @@ export class ProductUpdateComponent implements OnInit {
 
     trackProductCategoryById(index: number, item: IProductCategory) {
         return item.id;
-    }
-    get product() {
-        return this._product;
-    }
-
-    set product(product: IProduct) {
-        this._product = product;
     }
 }

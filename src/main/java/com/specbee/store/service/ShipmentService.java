@@ -34,7 +34,8 @@ public class ShipmentService {
      * @return the persisted entity
      */
     public Shipment save(Shipment shipment) {
-        log.debug("Request to save Shipment : {}", shipment);        return shipmentRepository.save(shipment);
+        log.debug("Request to save Shipment : {}", shipment);
+        return shipmentRepository.save(shipment);
     }
 
     /**

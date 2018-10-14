@@ -13,7 +13,7 @@ import { IUser, UserService } from 'app/core';
     templateUrl: './customer-update.component.html'
 })
 export class CustomerUpdateComponent implements OnInit {
-    private _customer: ICustomer;
+    customer: ICustomer;
     isSaving: boolean;
 
     users: IUser[];
@@ -70,12 +70,5 @@ export class CustomerUpdateComponent implements OnInit {
 
     trackUserById(index: number, item: IUser) {
         return item.id;
-    }
-    get customer() {
-        return this._customer;
-    }
-
-    set customer(customer: ICustomer) {
-        this._customer = customer;
     }
 }

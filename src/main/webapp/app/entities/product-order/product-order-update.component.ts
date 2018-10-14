@@ -16,7 +16,7 @@ import { CustomerService } from 'app/entities/customer';
     templateUrl: './product-order-update.component.html'
 })
 export class ProductOrderUpdateComponent implements OnInit {
-    private _productOrder: IProductOrder;
+    productOrder: IProductOrder;
     isSaving: boolean;
 
     customers: ICustomer[];
@@ -33,6 +33,7 @@ export class ProductOrderUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ productOrder }) => {
             this.productOrder = productOrder;
+            this.placedDate = this.productOrder.placedDate != null ? this.productOrder.placedDate.format(DATE_TIME_FORMAT) : null;
         });
         this.customerService.query().subscribe(
             (res: HttpResponse<ICustomer[]>) => {
@@ -48,7 +49,7 @@ export class ProductOrderUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.productOrder.placedDate = moment(this.placedDate, DATE_TIME_FORMAT);
+        this.productOrder.placedDate = this.placedDate != null ? moment(this.placedDate, DATE_TIME_FORMAT) : null;
         if (this.productOrder.id !== undefined) {
             this.subscribeToSaveResponse(this.productOrderService.update(this.productOrder));
         } else {
@@ -75,13 +76,5 @@ export class ProductOrderUpdateComponent implements OnInit {
 
     trackCustomerById(index: number, item: ICustomer) {
         return item.id;
-    }
-    get productOrder() {
-        return this._productOrder;
-    }
-
-    set productOrder(productOrder: IProductOrder) {
-        this._productOrder = productOrder;
-        this.placedDate = moment(productOrder.placedDate).format(DATE_TIME_FORMAT);
     }
 }

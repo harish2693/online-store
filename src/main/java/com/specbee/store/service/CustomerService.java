@@ -34,7 +34,8 @@ public class CustomerService {
      * @return the persisted entity
      */
     public Customer save(Customer customer) {
-        log.debug("Request to save Customer : {}", customer);        return customerRepository.save(customer);
+        log.debug("Request to save Customer : {}", customer);
+        return customerRepository.save(customer);
     }
 
     /**

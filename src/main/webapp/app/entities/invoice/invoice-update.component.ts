@@ -16,7 +16,7 @@ import { ProductOrderService } from 'app/entities/product-order';
     templateUrl: './invoice-update.component.html'
 })
 export class InvoiceUpdateComponent implements OnInit {
-    private _invoice: IInvoice;
+    invoice: IInvoice;
     isSaving: boolean;
 
     productorders: IProductOrder[];
@@ -34,6 +34,8 @@ export class InvoiceUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ invoice }) => {
             this.invoice = invoice;
+            this.date = this.invoice.date != null ? this.invoice.date.format(DATE_TIME_FORMAT) : null;
+            this.paymentDate = this.invoice.paymentDate != null ? this.invoice.paymentDate.format(DATE_TIME_FORMAT) : null;
         });
         this.productOrderService.query().subscribe(
             (res: HttpResponse<IProductOrder[]>) => {
@@ -49,8 +51,8 @@ export class InvoiceUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.invoice.date = moment(this.date, DATE_TIME_FORMAT);
-        this.invoice.paymentDate = moment(this.paymentDate, DATE_TIME_FORMAT);
+        this.invoice.date = this.date != null ? moment(this.date, DATE_TIME_FORMAT) : null;
+        this.invoice.paymentDate = this.paymentDate != null ? moment(this.paymentDate, DATE_TIME_FORMAT) : null;
         if (this.invoice.id !== undefined) {
             this.subscribeToSaveResponse(this.invoiceService.update(this.invoice));
         } else {
@@ -77,14 +79,5 @@ export class InvoiceUpdateComponent implements OnInit {
 
     trackProductOrderById(index: number, item: IProductOrder) {
         return item.id;
-    }
-    get invoice() {
-        return this._invoice;
-    }
-
-    set invoice(invoice: IInvoice) {
-        this._invoice = invoice;
-        this.date = moment(invoice.date).format(DATE_TIME_FORMAT);
-        this.paymentDate = moment(invoice.paymentDate).format(DATE_TIME_FORMAT);
     }
 }

@@ -16,7 +16,7 @@ import { ProductOrderService } from 'app/entities/product-order';
     templateUrl: './order-item-update.component.html'
 })
 export class OrderItemUpdateComponent implements OnInit {
-    private _orderItem: IOrderItem;
+    orderItem: IOrderItem;
     isSaving: boolean;
 
     products: IProduct[];
@@ -86,12 +86,5 @@ export class OrderItemUpdateComponent implements OnInit {
 
     trackProductOrderById(index: number, item: IProductOrder) {
         return item.id;
-    }
-    get orderItem() {
-        return this._orderItem;
-    }
-
-    set orderItem(orderItem: IOrderItem) {
-        this._orderItem = orderItem;
     }
 }

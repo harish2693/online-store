@@ -34,7 +34,8 @@ public class ProductService {
      * @return the persisted entity
      */
     public Product save(Product product) {
-        log.debug("Request to save Product : {}", product);        return productRepository.save(product);
+        log.debug("Request to save Product : {}", product);
+        return productRepository.save(product);
     }
 
     /**
